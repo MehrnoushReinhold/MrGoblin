@@ -11,8 +11,8 @@ namespace GildedRose.Tests
         public void DecreaseSellIn()
         {
             var baseItem = new BaseItem("Base name", 0, 50);
-
-            baseItem.DecreaseSellIn();
+            BaseItemUpdater baseItemUpdater = new BaseItemUpdater();
+            baseItemUpdater.DecreaseSellIn(baseItem);
 
             Assert.Equal(baseItem.SellIn, -1);
         }
@@ -23,7 +23,8 @@ namespace GildedRose.Tests
             var baseItem = new BaseItem("Base name", 0, 30);
 
             var value = 5;
-            baseItem.IncreaseQuality(value);
+            BaseItemUpdater baseItemUpdater = new BaseItemUpdater();
+            baseItemUpdater.IncreaseQuality(baseItem, value);
 
             Assert.Equal(baseItem.Quality, 35);
         }
@@ -33,7 +34,8 @@ namespace GildedRose.Tests
         {
             var baseItem = new BaseItem("Base name", 0, 40);
             var value = 19;
-            baseItem.DecreaseQuality(value);
+            BaseItemUpdater baseItemUpdater = new BaseItemUpdater();
+            baseItemUpdater.DecreaseQuality(baseItem, value);
 
             Assert.Equal(baseItem.Quality, 21);
 

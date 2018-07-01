@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GildedRose.BLL.Items
+﻿namespace GildedRose.BLL.Items
 {
     public class LegendaryItem : BaseItem
     {
@@ -14,12 +8,5 @@ namespace GildedRose.BLL.Items
             SellIn = sellIn;
             Quality = quality;
         }
-        public override bool DecreaseSellIn()
-        {
-            SellIn = SellIn -1;
-
-            return true;
-        }
-
     }
 }

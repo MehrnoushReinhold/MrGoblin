@@ -8,7 +8,7 @@ using GildedRose.BLL.Items;
 
 namespace GildedRose.BLL.Implementations
 {
-    public class ConjuredItemUpdater : IItemUpdater
+    public class ConjuredItemUpdater : BaseItemUpdater, IItemUpdater
     {
         /// <summary>
         /// An item 
@@ -19,12 +19,12 @@ namespace GildedRose.BLL.Implementations
         {
             if (item.IsSellInNonPositiveInteger())
             {
-                item.DecreaseQuality(4);
+                DecreaseQuality(item, 4);
             }
             else { 
-                item.DecreaseQuality(2);
+                DecreaseQuality(item, 2);
             }
-            item.DecreaseSellIn();
+            DecreaseSellIn(item);
 
 
             Printer.PrintItem(this.GetType().Name, item);

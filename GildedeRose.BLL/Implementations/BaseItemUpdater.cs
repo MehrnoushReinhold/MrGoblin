@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using GildedRose.BLL.Helper;
 using GildedRose.BLL.Interfaces;
 using GildedRose.BLL.Items;
 
@@ -19,17 +15,43 @@ namespace GildedRose.BLL.Implementations
         {
             if (item.IsSellInNonPositiveInteger())
             {
-                item.DecreaseQuality(2);
+                DecreaseQuality(item, 2);
             }
             else { 
-                item.DecreaseQuality(1);
+                DecreaseQuality(item, 1);
             }
-            item.DecreaseSellIn();
+            DecreaseSellIn(item);
 
 
             Printer.PrintItem(this.GetType().Name, item);
 
             return item;
+        }
+
+        public virtual bool DecreaseSellIn(BaseItem item)
+        {
+            item.SellIn = item.SellIn - 1;
+            return true;
+        }
+        public virtual void IncreaseQuality(BaseItem item, int valueToIncreaseBy)
+        {
+            item.Quality = ItemHelper.LimitInclusive(item.Quality + valueToIncreaseBy, 0, 50); ;
+        }
+
+        public virtual void DecreaseQuality(BaseItem item, int valueToDecreaseBy)
+        {
+            if (!item.IsQualityZero())
+            {
+
+                if (valueToDecreaseBy > item.Quality)
+                {
+                    item.Quality = 0;
+                }
+                else
+                {
+                    item.Quality = item.Quality - valueToDecreaseBy;
+                }
+            }
         }
     }
 }
